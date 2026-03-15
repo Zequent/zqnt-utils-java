@@ -587,7 +587,7 @@ message MissionProtoDTO{
   optional google.protobuf.Timestamp endDate = 9;
   repeated string assignedAssets = 10;
   optional google.protobuf.Timestamp createdAt = 11;
-  optional google.protobuf.Timestamp updatedAt = 12;
+  optional google.protobuf.Timestamp modifiedAt = 12;
   optional string updatedUser = 13;
 }
 
@@ -646,6 +646,8 @@ message SchedulerProtoDTO{
   optional bool active = 6;
   SchedulerType type = 7;
   optional string clientTimeZone = 8;
+  optional google.protobuf.Timestamp createdAt = 9;
+  optional google.protobuf.Timestamp modifiedAt = 10;
 }
 
 message SchedulerProtoDTOList{
