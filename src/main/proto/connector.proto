@@ -108,18 +108,19 @@ message ConnectorResponse{
   google.protobuf.Timestamp timestamp = 3;
   optional bool hasErrors = 4;
   optional string assetId = 5;
+  optional string responseMessage = 6;
   oneof response{
-    google.protobuf.Empty empty = 6;
-    GlobalErrorMessage error = 7;
-    AssetProtoDTO assetDTO = 8;
-    SubAssetProtoDTO subAssetDTO = 9;
-    OrganizationProtoDTO organizationDTO = 10;
-    MissionProtoDTO missionDTO = 11;
-    TaskProtoDTO taskDTO = 12;
-    SchedulerProtoDTO schedulerDTO = 13;
-    WaypointsListDTO waypointDTOList = 14;
+    google.protobuf.Empty empty = 7;
+    GlobalErrorMessage error = 8;
+    AssetProtoDTO assetDTO = 9;
+    SubAssetProtoDTO subAssetDTO = 10;
+    OrganizationProtoDTO organizationDTO = 11;
+    MissionProtoDTO missionDTO = 12;
+    TaskProtoDTO taskDTO = 13;
+    SchedulerProtoDTO schedulerDTO = 14;
+    WaypointsListDTO waypointDTOList = 15;
+    SchedulerProtoDTOList schedulerDTOList = 16;
   }
-  optional string responseMessage = 15;
 }
 
 message AssetMonitoringResponse{
