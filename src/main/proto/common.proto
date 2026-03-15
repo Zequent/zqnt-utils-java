@@ -648,6 +648,10 @@ message SchedulerProtoDTO{
   optional string clientTimeZone = 8;
 }
 
+message SchedulerProtoDTOList{
+  repeated SchedulerProtoDTO schedulerDTOList= 1;
+}
+
 // ========== TASK CONFIG MESSAGES (Type-safe configs matching POJOs) ==========
 
 // Waypoint task configuration - mirrors WaypointTaskConfig.java
