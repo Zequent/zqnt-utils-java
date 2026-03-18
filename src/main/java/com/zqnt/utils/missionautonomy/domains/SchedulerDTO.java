@@ -1,6 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains;
 
-import com.zequent.framework.common.proto.SchedulerType;
+import com.zqnt.utils.common.proto.SchedulerType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

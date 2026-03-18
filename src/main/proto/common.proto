@@ -3,12 +3,12 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
-option java_package = "com.zequent.framework.common.proto";
+option java_package = "com.zqnt.utils.common.proto";
 option java_outer_classname = "CommonProto";
 option go_package = "zequent/framework/gen/proto";
 
 
-enum RemoteControlCommands {
+enum RemoteControlCommand {
   ARM = 0;
   DISARM = 1;
   TAKEOFF = 2;
@@ -113,7 +113,7 @@ enum AssetAirConditionerStateEnum{
 
 
 
-enum AssetModes{
+enum AssetMode{
   ASSET_MODE_IDLE = 0;
   ASSET_MODE_DEBUGGING = 1;
   ASSET_MODE_REMOTE_DEBUGGING = 2;
@@ -146,7 +146,7 @@ enum SubAssetMode{
   SUBASSET_MODE_DOCK_SITE_EVALUATION = 19;
   SUBASSET_MODE_POI = 20;
 }
-enum ErrorCodes{
+enum ErrorCode{
   SYSTEM_ERROR = 0;
   CLIENT_ERROR = 1;
   SDK_ERROR = 2;
@@ -158,7 +158,7 @@ enum ErrorCodes{
 message GlobalErrorMessage{
   google.protobuf.Timestamp timestamp = 1;
   string errorMessage = 2;
-  ErrorCodes errorCode = 3;
+  ErrorCode errorCode = 3;
 }
 
 enum AssetTypeEnum{
@@ -201,7 +201,7 @@ enum SchedulerType{
   CONNECTORS = 5;
 }
 
-enum MissionAutonomyCommands {
+enum MissionAutonomyCommand {
   COMMAND_UNSPECIFIED = 0;
   CREATE_OPERATION = 1;
   UPDATE_OPERATION = 2;
@@ -377,7 +377,7 @@ enum FlighttaskBreakReasonEnumProto{
 
 
 
-enum TaskGoals{
+enum TaskGoal{
   TASK_UNDEFINED = 0;
   TRACK = 1;
   FOLLOW = 2;
@@ -587,12 +587,12 @@ message MissionProtoDTO{
   optional google.protobuf.Timestamp endDate = 9;
   repeated string assignedAssets = 10;
   optional google.protobuf.Timestamp createdAt = 11;
-  optional google.protobuf.Timestamp updatedAt = 12;
+  optional google.protobuf.Timestamp modifiedAt = 12;
   optional string updatedUser = 13;
 }
 
 
-// POJO-aligned task DTO with dynamic config payload (configJson).
+// POJO-aligned task DTO with type-safe config payload.
 message TaskProtoDTO{
   optional string id = 1;
   optional string missionId = 2;
@@ -602,15 +602,26 @@ message TaskProtoDTO{
   optional string name = 3;
   optional string description = 4;
   optional TaskTypeProto taskType = 5;
-  // JSON representation of task-specific config payload.
-  // Keep this dynamic to avoid protobuf schema churn for task variants.
-  optional string config = 6;
+
+  // Deprecated JSON string config - use taskConfig instead
+  optional string config = 6 [deprecated = true];
+
   TaskStatus status = 7;
   optional string assetId = 8;
   optional string snNumber = 9;
   optional int32 currentProgress = 10;
   optional string currentStep = 11;
   optional FlighttaskBreakReasonEnumProto breakReason = 12;
+
+  // Type-safe task configuration (replaces config field)
+  oneof taskConfig {
+    WaypointTaskConfigProto waypointConfig = 50;
+    DetectTaskConfigProto detectConfig = 51;
+    AreaMappingTaskConfigProto areaMappingConfig = 52;
+    PoiTaskConfigProto poiConfig = 53;
+    FollowTaskConfigProto followConfig = 54;
+    TrackTaskConfigProto trackConfig = 55;
+  }
 
 }
 
@@ -635,4 +646,158 @@ message SchedulerProtoDTO{
   optional bool active = 6;
   SchedulerType type = 7;
   optional string clientTimeZone = 8;
+  optional google.protobuf.Timestamp createdAt = 9;
+  optional google.protobuf.Timestamp modifiedAt = 10;
+}
+
+message SchedulerProtoDTOList{
+  repeated SchedulerProtoDTO schedulerDTOList= 1;
+}
+
+// ========== TASK CONFIG MESSAGES (Type-safe configs matching POJOs) ==========
+
+// Waypoint task configuration - mirrors WaypointTaskConfig.java
+message WaypointTaskConfigProto {
+  string flightId = 1;
+  repeated WaypointProtoDTO waypoints = 2;
+  optional FlyToWaylineModeProto flyToWaylineMode = 3;
+  optional WaylineFinishActionProto waylineFinishAction = 4;
+  optional WaylineTypeEnumProto waylineType = 5;
+  optional WaylineTurnModeProto waylineTurnMode = 6;
+  optional bool useStraightLine = 7;
+  optional WaylinePrecisionTypeEnumProto waylinePrecisionType = 8;
+  optional ExitWaylineWhenRcLostEnumProto exitWaylineWhenRcLostEnum = 9;
+  optional RcLostActionEnumProto rcLostActionEnum = 10;
+  optional OutOfControlActionEnumProto outOfControlAction = 11;
+  optional float takeOffSecurityHeight = 12;
+  optional int32 rthAltitude = 13;
+  optional RthModeEnumProto rthMode = 14;
+  optional float rthSpeed = 15;
+  optional float globalSpeed = 16;
+  optional float globalTransitionSpeed = 17;
+  optional float globalHeight = 18;
+  optional WaylineGimbalPitchModeProto gimbalPitchMode = 19;
+  optional int32 globalGimbalPitch = 20;
+  optional string payloadImagingType = 21;
+  optional string fileUrl = 22;
+  optional string fileMd5 = 23;
+  optional string flightAreaFileUrl = 24;
+  optional string flightAreaChecksum = 25;
+}
+
+// Detect task configuration - mirrors DetectTaskConfig.java
+message DetectTaskConfigProto {
+  repeated string detectionTargets = 1;
+  optional string detectionMode = 2;
+  optional double areaLatitude = 3;
+  optional double areaLongitude = 4;
+  optional float areaRadius = 5;
+  optional float detectionAltitude = 6;
+  optional string scanPattern = 7;
+  optional float scanSpeed = 8;
+  optional bool thermalDetection = 9;
+  optional bool visualDetection = 10;
+  optional float minConfidence = 11;
+  optional int32 maxDetections = 12;
+  optional bool autoCaptureOnDetection = 13;
+  optional bool investigateDetections = 14;
+  optional float investigationDistance = 15;
+  optional int32 investigationDuration = 16;
+  optional int32 gimbalPitch = 17;
+  optional bool enableZoom = 18;
+  optional float zoomLevel = 19;
+  optional int32 maxDuration = 20;
+  optional string onMaxDetectionsAction = 21;
+  optional bool realtimeAlerts = 22;
+  optional string aiModelId = 23;
+  repeated DetectionParameterProto detectionParameters = 24;
+
+  message DetectionParameterProto {
+    string name = 1;
+    string value = 2;
+    optional string description = 3;
+  }
+}
+
+// Area mapping task configuration - mirrors AreaMappingTaskConfig.java
+message AreaMappingTaskConfigProto {
+  repeated AreaVertexProto areaVertices = 1;
+  float surveyAltitude = 2;
+  optional string flightPattern = 3;
+  optional int32 frontOverlap = 4;
+  optional int32 sideOverlap = 5;
+  optional float speed = 6;
+  optional int32 gimbalPitch = 7;
+  optional int32 cameraAngle = 8;
+  optional bool terrainFollowing = 9;
+  optional float groundSamplingDistance = 10;
+  optional bool enable3DReconstruction = 11;
+
+  message AreaVertexProto {
+    double latitude = 1;
+    double longitude = 2;
+    optional int32 order = 3;
+  }
+}
+
+// POI task configuration - mirrors PoiTaskConfig.java
+message PoiTaskConfigProto {
+  double poiLatitude = 1;
+  double poiLongitude = 2;
+  float poiAltitude = 3;
+  optional float orbitRadius = 4;
+  optional float orbitSpeed = 5;
+  optional float flightAltitude = 6;
+  optional int32 numberOfOrbits = 7;
+  optional string orbitDirection = 8;
+  optional int32 startAngle = 9;
+  optional int32 endAngle = 10;
+  optional bool captureEnabled = 11;
+  optional int32 captureInterval = 12;
+  optional bool lockCameraOnPoi = 13;
+}
+
+// Follow task configuration - mirrors FollowTaskConfig.java
+message FollowTaskConfigProto {
+  string targetType = 1;
+  optional double initialLatitude = 2;
+  optional double initialLongitude = 3;
+  optional float followDistance = 4;
+  optional float relativeAltitude = 5;
+  optional float maxSpeed = 6;
+  optional string followMode = 7;
+  optional int32 angleOffset = 8;
+  optional bool obstacleAvoidance = 9;
+  optional int32 maxDuration = 10;
+  optional float maxDistanceFromStart = 11;
+  optional string lostTargetAction = 12;
+  optional int32 lostTargetTimeout = 13;
+  optional bool lockCameraOnTarget = 14;
+  optional int32 gimbalPitchOffset = 15;
+  optional bool autoCapture = 16;
+  optional int32 captureInterval = 17;
+}
+
+// Track task configuration - mirrors TrackTaskConfig.java
+message TrackTaskConfigProto {
+  string targetType = 1;
+  optional double initialLatitude = 2;
+  optional double initialLongitude = 3;
+  optional float targetAltitude = 4;
+  optional string trackingMode = 5;
+  optional float maxMovementRadius = 6;
+  optional float trackingAltitude = 7;
+  optional bool gimbalTracking = 8;
+  optional bool autoZoom = 9;
+  optional float zoomLevel = 10;
+  optional string trackingSensitivity = 11;
+  optional int32 maxDuration = 12;
+  optional string lostTargetAction = 13;
+  optional int32 lostTargetTimeout = 14;
+  optional string searchPattern = 15;
+  optional int32 searchDuration = 16;
+  optional bool continuousRecording = 17;
+  optional bool photoCapture = 18;
+  optional int32 captureInterval = 19;
+  optional float confidenceThreshold = 20;
 }

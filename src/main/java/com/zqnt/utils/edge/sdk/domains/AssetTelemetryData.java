@@ -1,6 +1,6 @@
 package com.zqnt.utils.edge.sdk.domains;
 
-import com.zequent.framework.common.proto.*;
+import com.zqnt.utils.common.proto.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class AssetTelemetryData {
 	private Float environmentTemp;
 	private Float insideTemp;
 	private Float humidity;
-	private AssetModes mode;
+	private AssetMode mode;
 	private RainfallEnum rainfall;
 	private SubAssetInformation subAssetInformation;
 	private Boolean subAssetAtHome;

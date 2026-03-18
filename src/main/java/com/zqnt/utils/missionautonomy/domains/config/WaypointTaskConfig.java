@@ -1,6 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
-import com.zequent.framework.common.proto.*;
+import com.zqnt.utils.common.proto.*;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import com.zqnt.utils.missionautonomy.domains.WaypointDTO;
 import lombok.*;

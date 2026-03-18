@@ -1,7 +1,7 @@
 package com.zqnt.utils.missionautonomy.domains;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.zequent.framework.common.proto.*;
+import com.zqnt.utils.common.proto.*;
 import com.zqnt.utils.missionautonomy.domains.config.TaskConfigTemplate;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

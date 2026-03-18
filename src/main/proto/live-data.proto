@@ -5,7 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "common.proto";
 
 option java_multiple_files = true;
-option java_package = "com.zequent.framework.services.livedata.proto";
+option java_package = "com.zqnt.utils.livedata.proto";
 option java_outer_classname = "LiveDataProto";
 option go_package = "zequent/framework/gen/proto";
 
@@ -123,7 +123,7 @@ message AssetTelemetry{
   optional float environmentTemp = 7;
   optional float insideTemp = 8;
   optional float humidity = 9;
-  optional AssetModes mode = 10;
+  optional AssetMode mode = 10;
   optional RainfallEnum rainfall = 11;
   optional AssetSubAssetInformation subAssetInformation = 12;
   optional bool subAssetAtHome = 13;

@@ -1,8 +1,9 @@
 package com.zqnt.utils.asset.domains;
 
-import com.zequent.framework.common.proto.AssetConnection;
-import com.zequent.framework.common.proto.AssetTypeEnum;
-import com.zequent.framework.common.proto.AssetVendor;
+
+import com.zqnt.utils.common.proto.AssetConnection;
+import com.zqnt.utils.common.proto.AssetTypeEnum;
+import com.zqnt.utils.common.proto.AssetVendor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
-option java_package = "com.zequent.framework.services.mission.proto";
+option java_package = "com.zqnt.utils.mission.proto";
 option java_outer_classname = "MissionAutonomyProto";
 option go_package = "zequent/framework/gen/proto";
 
@@ -21,6 +21,7 @@ service MissionAutonomyService {
   rpc CreateTask (CreateTaskRequest) returns(TaskResponse);
   rpc UpdateTask(UpdateTaskRequest) returns(TaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns(TaskResponse);
+  rpc GetAllSchedulers(GetTaskRequest) returns (SchedulerResponse);
   rpc GetScheduler(GetSchedulerRequest) returns(SchedulerResponse);
   rpc CreateScheduler(CreateSchedulerRequest) returns(SchedulerResponse);
   rpc UpdateScheduler(UpdateSchedulerRequest) returns(SchedulerResponse);
@@ -98,7 +99,7 @@ message DeleteSchedulerRequest{
 
 message GetSchedulerRequest{
   RequestBase base = 1;
-  string schedulerId = 2;
+  optional string schedulerId = 2;
 }
 
 
@@ -160,6 +161,7 @@ message SchedulerResponse{
     GlobalErrorMessage error = 6;
     CommandProgress progress = 7;
     SchedulerProtoDTO schedulerDTO = 8;
+    SchedulerProtoDTOList schedulerDTOList = 9;
   }
 }
 

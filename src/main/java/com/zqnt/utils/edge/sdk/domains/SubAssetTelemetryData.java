@@ -1,6 +1,6 @@
 package com.zqnt.utils.edge.sdk.domains;
 
-import com.zequent.framework.common.proto.SubAssetMode;
+import com.zqnt.utils.common.proto.SubAssetMode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
