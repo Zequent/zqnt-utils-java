@@ -21,7 +21,6 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     // ============= REQUIRED FIELDS =============
 
     @Builder.Default
-    @NonNull
     private String configType = TaskType.TASK_TYPE_WAYPOINT.name();
 
     /**
