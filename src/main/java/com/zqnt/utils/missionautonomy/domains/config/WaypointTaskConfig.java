@@ -26,9 +26,9 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private String configType = TaskType.TASK_TYPE_WAYPOINT.name();
 
     /**
-     * Flight identifier (REQUIRED)
+     * Flight identifier
      */
-    @NonNull
+
     private String flightId;
 
     /**
