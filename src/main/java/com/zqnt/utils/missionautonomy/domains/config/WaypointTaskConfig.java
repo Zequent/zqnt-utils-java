@@ -70,31 +70,31 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     /**
      * Use straight line between waypoints
-    @JsonProperty(defaultValue = "true")
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean useStraightLine = true;
 
     /**
      * Wayline precision type
-    @JsonProperty(defaultValue = "PRECISION_GPS")
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "PRECISION_GPS")
     private WaylinePrecisionTypeEnumProto waylinePrecisionType = WaylinePrecisionTypeEnumProto.PRECISION_GPS;
 
     // ============= SAFETY & FAILSAFE =============
 
     /**
      * Behavior when RC signal is lost during wayline
-    @JsonProperty(defaultValue = "EWWRL_EXECUTE_RC_LOST_ACTION")
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "EWWRL_EXECUTE_RC_LOST_ACTION")
     private ExitWaylineWhenRcLostEnumProto exitWaylineWhenRcLostEnum = ExitWaylineWhenRcLostEnumProto.EWWRL_EXECUTE_RC_LOST_ACTION;
 
     /**
-    @JsonProperty(defaultValue = "RC_LOST_ACTION_RETURN_HOME")
      * Action when RC is lost
      */
+    @JsonProperty(defaultValue = "RC_LOST_ACTION_RETURN_HOME")
     @Builder.Default
     private RcLostActionEnumProto rcLostActionEnum = RcLostActionEnumProto.RC_LOST_ACTION_RETURN_HOME;
 
@@ -105,11 +105,11 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     @Builder.Default
     private OutOfControlActionEnumProto outOfControlAction = OutOfControlActionEnumProto.OOC_RETURN_TO_HOME;
 
-    @JsonProperty(defaultValue = "10.0")
     /**
      * Take-off security height in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10.0")
     private Float takeOffSecurityHeight = 10.0f;
 
     // ============= RETURN TO HOME (RTH) =============
@@ -131,11 +131,11 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     // ============= SPEED & MOVEMENT =============
 
-    @JsonProperty(defaultValue = "5.0")
     /**
      * Global speed for all waypoints in m/s (can be overridden per waypoint)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "5.0")
     private Float globalSpeed = 5.0f;
 
     @JsonProperty(defaultValue = "8.0")
@@ -153,19 +153,19 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private Float globalHeight = 50.0f;
 
     // ============= GIMBAL CONTROL =============
-@JsonProperty(defaultValue = "WGP_MODE_LOOK_DOWN")
     
     /**
      * Gimbal pitch control mode
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "WGP_MODE_LOOK_DOWN")
     private WaylineGimbalPitchModeProto gimbalPitchMode = WaylineGimbalPitchModeProto.WGP_MODE_LOOK_DOWN;
-@JsonProperty(defaultValue = "-45")
     
     /**
      * Global gimbal pitch in degrees (-90 to 0, where -90 is straight down)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "-45")
     private Integer globalGimbalPitch = -45;
 
     // ============= PAYLOAD & IMAGING =============
