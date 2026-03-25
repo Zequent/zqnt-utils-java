@@ -13,6 +13,7 @@ option go_package = "zequent/framework/gen/proto";
 
 
 
+// ConnectorService provides RPC methods for managing assets, missions, tasks, schedulers, and telemetry data.
 service ConnectorService{
 
   rpc RegisterAsset(ConnectorRegisterAssetRequest) returns (ConnectorResponse);

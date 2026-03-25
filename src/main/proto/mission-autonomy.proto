@@ -9,7 +9,9 @@ option java_package = "com.zqnt.utils.mission.proto";
 option java_outer_classname = "MissionAutonomyProto";
 option go_package = "zequent/framework/gen/proto";
 
-
+// MissionAutonomyService provides RPC endpoints for mission and task management,
+// including operations for creating, updating, deleting, and retrieving missions,
+// tasks, and schedulers.
 service MissionAutonomyService {
 
   rpc GetMission(GetMissionRequest) returns (MissionResponse);

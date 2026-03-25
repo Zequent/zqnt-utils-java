@@ -9,7 +9,9 @@ option java_package = "com.zqnt.utils.edge.sdk.proto";
 option java_outer_classname = "EdgeSdkProto";
 option go_package = "zequent/framework/gen/proto";
 
-
+// EdgeAdapterService provides RPC endpoints for controlling edge devices,
+// including flight operations, gimbal control, camera management, dock operations,
+// and asset management.
 service EdgeAdapterService {
   // Capability Management
   rpc GetCapabilities(EdgeGetCapabilitiesRequest) returns (EdgeGetCapabilitiesResponse);

@@ -3,6 +3,7 @@ import "common.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
+
 option java_multiple_files = true;
 option java_package = "com.zqnt.utils.remotecontrol.proto";
 option java_outer_classname = "RemoteControlProto";
@@ -120,6 +121,8 @@ message RemoteControlChangeAcModeRequest{
 
 // ========== SERVICE ==========
 
+// RemoteControlService provides remote control operations for assets including flight control,
+// manual control, dock operations, and asset management.
 service RemoteControlService {
   // Flight Control
   rpc TakeOff(RemoteControlTakeOffRequest) returns (RemoteControlResponse);

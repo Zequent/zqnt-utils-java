@@ -237,6 +237,7 @@ message PayloadTelemetry {
 
 // ========== SERVICE ==========
 
+// LiveDataService provides RPC methods for telemetry streaming, production, and live stream management.
 service LiveDataService {
   // Telemetry Streaming - Server sends telemetry to clients
   rpc StreamTelemetry(LiveDataStreamTelemetryRequest) returns (stream LiveDataTelemetryResponse);
