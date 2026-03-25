@@ -16,6 +16,10 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class AreaMappingTaskConfig implements TaskConfigTemplate {
 
+    @Builder.Default
+    @NonNull
+    private String configType = TaskType.TASK_TYPE_AREA_MAPPING.name();
+
     /**
      * Survey area polygon vertices (REQUIRED, minimum 3 points)
      */

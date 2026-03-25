@@ -26,6 +26,16 @@ import java.io.Serializable;
 public interface TaskConfigTemplate extends Serializable {
 
     /**
+     * Returns the type name used as config discriminator (for JSON/binding).
+     */
+    String getConfigType();
+
+    /**
+     * Sets the type name used as config discriminator (for JSON/binding).
+     */
+    void setConfigType(String configType);
+
+    /**
      * Returns the task type this configuration belongs to
      */
     TaskType getTaskType();

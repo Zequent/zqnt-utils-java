@@ -14,6 +14,10 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class TrackTaskConfig implements TaskConfigTemplate {
 
+    @Builder.Default
+    @NonNull
+    private String configType = TaskType.TASK_TYPE_TRACK.name();
+
     /**
      * Target identifier/type to track (REQUIRED)
      * e.g., "person", "vehicle", "object", "marker"

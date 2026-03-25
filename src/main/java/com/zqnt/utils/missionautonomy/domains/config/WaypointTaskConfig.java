@@ -22,7 +22,7 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     @Builder.Default
     @NonNull
-    private String configType = TaskType.TASK_TYPE_UNSPECIFIED.name();
+    private String configType = TaskType.TASK_TYPE_WAYPOINT.name();
 
     /**
      * Flight identifier (REQUIRED)

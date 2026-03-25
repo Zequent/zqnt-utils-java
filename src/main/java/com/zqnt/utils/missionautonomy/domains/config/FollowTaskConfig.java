@@ -13,6 +13,10 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class FollowTaskConfig implements TaskConfigTemplate {
 
+    @Builder.Default
+    @NonNull
+    private String configType = TaskType.TASK_TYPE_FOLLOW.name();
+
     /**
      * Target identifier/type to follow (REQUIRED)
      * e.g., "person", "vehicle", "boat", "animal"

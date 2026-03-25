@@ -13,6 +13,10 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class PoiTaskConfig implements TaskConfigTemplate {
 
+    @Builder.Default
+    @NonNull
+    private String configType = TaskType.TASK_TYPE_POI.name();
+
     /**
      * POI latitude (REQUIRED)
      */

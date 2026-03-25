@@ -16,6 +16,10 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class DetectTaskConfig implements TaskConfigTemplate {
 
+    @Builder.Default
+    @NonNull
+    private String configType = TaskType.TASK_TYPE_DETECT.name();
+
     /**
      * Detection targets (REQUIRED)
      * e.g., ["person", "vehicle", "anomaly", "thermal_hotspot"]
