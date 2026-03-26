@@ -21,10 +21,6 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     // ============= REQUIRED FIELDS =============
 
-    @Builder.Default
-    @JsonProperty(defaultValue = "TASK_TYPE_WAYPOINT")
-    private String configType = TaskType.TASK_TYPE_WAYPOINT.name();
-
     /**
      * Flight identifier
      */
@@ -99,9 +95,9 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private RcLostActionEnumProto rcLostActionEnum = RcLostActionEnumProto.RC_LOST_ACTION_RETURN_HOME;
 
     /**
-    @JsonProperty(defaultValue = "OOC_RETURN_TO_HOME")
      * Action when out of control
      */
+    @JsonProperty(defaultValue = "OOC_RETURN_TO_HOME")
     @Builder.Default
     private OutOfControlActionEnumProto outOfControlAction = OutOfControlActionEnumProto.OOC_RETURN_TO_HOME;
 
@@ -138,17 +134,17 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     @JsonProperty(defaultValue = "5.0")
     private Float globalSpeed = 5.0f;
 
-    @JsonProperty(defaultValue = "8.0")
     /**
      * Global transition speed between waypoints in m/s
      */
+    @JsonProperty(defaultValue = "8.0")
     @Builder.Default
     private Float globalTransitionSpeed = 8.0f;
 
-    @JsonProperty(defaultValue = "50.0")
     /**
      * Global height for all waypoints in meters (can be overridden per waypoint)
      */
+    @JsonProperty(defaultValue = "50.0")
     @Builder.Default
     private Float globalHeight = 50.0f;
 
@@ -198,6 +194,11 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private String flightAreaChecksum;
 
     // ============= VALIDATION & LIFECYCLE =============
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_WAYPOINT.name();
+    }
 
     @Override
     public TaskType getTaskType() {

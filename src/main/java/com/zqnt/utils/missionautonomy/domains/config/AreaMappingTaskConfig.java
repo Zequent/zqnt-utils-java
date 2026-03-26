@@ -17,11 +17,6 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class AreaMappingTaskConfig implements TaskConfigTemplate {
 
-    @Builder.Default
-    @NonNull
-    @JsonProperty(defaultValue = "TASK_TYPE_AREA_MAPPING")
-    private String configType = TaskType.TASK_TYPE_AREA_MAPPING.name();
-
     /**
      * Survey area polygon vertices (REQUIRED, minimum 3 points)
      */
@@ -104,6 +99,11 @@ public class AreaMappingTaskConfig implements TaskConfigTemplate {
         private Double latitude;
         private Double longitude;
         private Integer order;
+    }
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_AREA_MAPPING.name();
     }
 
     @Override

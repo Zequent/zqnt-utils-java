@@ -14,10 +14,6 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class FollowTaskConfig implements TaskConfigTemplate {
 
-    @Builder.Default
-    @NonNull
-    @JsonProperty(defaultValue = "TASK_TYPE_FOLLOW")
-    private String configType = TaskType.TASK_TYPE_FOLLOW.name();
 
     /**
      * Target identifier/type to follow (REQUIRED)
@@ -126,6 +122,11 @@ public class FollowTaskConfig implements TaskConfigTemplate {
      * Capture interval in seconds (if autoCapture is enabled)
      */
     private Integer captureInterval;
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_FOLLOW.name();
+    }
 
     @Override
     public TaskType getTaskType() {

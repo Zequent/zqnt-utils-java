@@ -15,11 +15,6 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class TrackTaskConfig implements TaskConfigTemplate {
 
-    @Builder.Default
-    @NonNull
-    @JsonProperty(defaultValue = "TASK_TYPE_TRACK")
-    private String configType = TaskType.TASK_TYPE_TRACK.name();
-
     /**
      * Target identifier/type to track (REQUIRED)
      * e.g., "person", "vehicle", "object", "marker"
@@ -154,6 +149,11 @@ public class TrackTaskConfig implements TaskConfigTemplate {
     @Builder.Default
     @JsonProperty(defaultValue = "0.7")
     private Float confidenceThreshold = 0.7f;
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_TRACK.name();
+    }
 
     @Override
     public TaskType getTaskType() {

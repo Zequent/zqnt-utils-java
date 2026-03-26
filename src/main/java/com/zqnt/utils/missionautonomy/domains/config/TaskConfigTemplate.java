@@ -30,10 +30,6 @@ public interface TaskConfigTemplate extends Serializable {
      */
     String getConfigType();
 
-    /**
-     * Sets the type name used as config discriminator (for JSON/binding).
-     */
-    void setConfigType(String configType);
 
     /**
      * Returns the task type this configuration belongs to

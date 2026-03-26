@@ -17,10 +17,6 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class DetectTaskConfig implements TaskConfigTemplate {
 
-    @Builder.Default
-    @NonNull
-    @JsonProperty(defaultValue = "TASK_TYPE_DETECT")
-    private String configType = TaskType.TASK_TYPE_DETECT.name();
 
     /**
      * Detection targets (REQUIRED)
@@ -191,6 +187,11 @@ public class DetectTaskConfig implements TaskConfigTemplate {
         private String name;
         private String value;
         private String description;
+    }
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_DETECT.name();
     }
 
     @Override

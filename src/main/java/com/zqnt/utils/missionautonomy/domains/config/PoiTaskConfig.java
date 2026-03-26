@@ -14,11 +14,6 @@ import lombok.*;
 @Builder(toBuilder = true)
 public class PoiTaskConfig implements TaskConfigTemplate {
 
-    @Builder.Default
-    @NonNull
-    @JsonProperty(defaultValue = "TASK_TYPE_POI")
-    private String configType = TaskType.TASK_TYPE_POI.name();
-
     /**
      * POI latitude (REQUIRED)
      */
@@ -104,6 +99,11 @@ public class PoiTaskConfig implements TaskConfigTemplate {
     @Builder.Default
     @JsonProperty(defaultValue = "true")
     private Boolean lockCameraOnPoi = true;
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_POI.name();
+    }
 
     @Override
     public TaskType getTaskType() {
