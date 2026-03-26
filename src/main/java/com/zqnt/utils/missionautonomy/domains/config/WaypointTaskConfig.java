@@ -149,14 +149,14 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private Float globalHeight = 50.0f;
 
     // ============= GIMBAL CONTROL =============
-    
+
     /**
      * Gimbal pitch control mode
      */
     @Builder.Default
     @JsonProperty(defaultValue = "WGP_MODE_LOOK_DOWN")
     private WaylineGimbalPitchModeProto gimbalPitchMode = WaylineGimbalPitchModeProto.WGP_MODE_LOOK_DOWN;
-    
+
     /**
      * Global gimbal pitch in degrees (-90 to 0, where -90 is straight down)
      */
@@ -207,9 +207,6 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     @Override
     public void validate() {
-        if (flightId == null || flightId.trim().isEmpty()) {
-            throw new IllegalArgumentException("FlightId is required for waypoint tasks");
-        }
 
         if (waypoints == null || waypoints.isEmpty()) {
             throw new IllegalArgumentException("At least one waypoint is required");
