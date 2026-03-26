@@ -13,7 +13,8 @@ import java.io.Serializable;
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
-        property = "configType"
+        property = "configType",
+        visible = true
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = DetectTaskConfig.class, name = "TASK_TYPE_DETECT"),
