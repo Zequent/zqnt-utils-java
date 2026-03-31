@@ -34,4 +34,14 @@ public class MissionDTO implements Serializable {
     private LocalDateTime endDate;
     private Set<String> assignedAssets = new HashSet<>();
     private String updatedUser;
+
+    /**
+     * Validates this mission DTO.
+     * @throws IllegalArgumentException if the mission is invalid
+     */
+    public void validate() {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Mission name must be specified");
+        }
+    }
 }
