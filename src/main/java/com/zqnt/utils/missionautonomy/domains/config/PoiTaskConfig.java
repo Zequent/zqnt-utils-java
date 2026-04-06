@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import lombok.*;
 
@@ -35,48 +36,56 @@ public class PoiTaskConfig implements TaskConfigTemplate {
      * Orbit radius in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "20.0")
     private Float orbitRadius = 20.0f;
 
     /**
      * Orbit speed in m/s
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "3.0")
     private Float orbitSpeed = 3.0f;
 
     /**
      * Flight altitude during orbit in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "30.0")
     private Float flightAltitude = 30.0f;
 
     /**
      * Number of complete orbits
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "1")
     private Integer numberOfOrbits = 1;
 
     /**
      * Orbit direction (clockwise, counterclockwise)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "clockwise")
     private String orbitDirection = "clockwise";
 
     /**
      * Starting angle in degrees (0 = North, 90 = East)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "0")
     private Integer startAngle = 0;
 
     /**
      * Ending angle in degrees (360 for full orbit)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "360")
     private Integer endAngle = 360;
 
     /**
      * Enable photo/video capture during orbit
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean captureEnabled = true;
 
     /**
@@ -88,7 +97,13 @@ public class PoiTaskConfig implements TaskConfigTemplate {
      * Keep camera locked on POI
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean lockCameraOnPoi = true;
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_POI.name();
+    }
 
     @Override
     public TaskType getTaskType() {

@@ -13,7 +13,8 @@ import java.io.Serializable;
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
-        property = "configType"
+        property = "configType",
+        visible = true
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = DetectTaskConfig.class, name = "TASK_TYPE_DETECT"),
@@ -24,6 +25,12 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = TrackTaskConfig.class, name = "TASK_TYPE_TRACK"),
 })
 public interface TaskConfigTemplate extends Serializable {
+
+    /**
+     * Returns the type name used as config discriminator (for JSON/binding).
+     */
+    String getConfigType();
+
 
     /**
      * Returns the task type this configuration belongs to

@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import lombok.*;
 
@@ -43,36 +44,42 @@ public class TrackTaskConfig implements TaskConfigTemplate {
      * - limited_movement: Drone can move within defined radius
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "stationary")
     private String trackingMode = "stationary";
 
     /**
      * Maximum movement radius in meters (for adaptive/limited_movement modes)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10.0")
     private Float maxMovementRadius = 10.0f;
 
     /**
      * Tracking altitude in meters (drone's position)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "20.0")
     private Float trackingAltitude = 20.0f;
 
     /**
      * Enable gimbal tracking (camera follows target)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean gimbalTracking = true;
 
     /**
      * Enable zoom to keep target in frame at consistent size
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "false")
     private Boolean autoZoom = false;
 
     /**
      * Target zoom level (1x - 200x depending on camera)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "1.0")
     private Float zoomLevel = 1.0f;
 
     /**
@@ -80,6 +87,7 @@ public class TrackTaskConfig implements TaskConfigTemplate {
      * Controls how quickly drone/gimbal responds to target movement
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "medium")
     private String trackingSensitivity = "medium";
 
     /**
@@ -91,36 +99,42 @@ public class TrackTaskConfig implements TaskConfigTemplate {
      * Lost target behavior (hover, return_to_home, land, search)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "search")
     private String lostTargetAction = "search";
 
     /**
      * Target lost timeout in seconds before executing lostTargetAction
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "15")
     private Integer lostTargetTimeout = 15;
 
     /**
      * Search pattern if target is lost (spiral, grid, last_known)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "last_known")
     private String searchPattern = "last_known";
 
     /**
      * Search duration in seconds before giving up
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "60")
     private Integer searchDuration = 60;
 
     /**
      * Enable continuous recording during tracking
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean continuousRecording = true;
 
     /**
      * Enable photo capture during tracking
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "false")
     private Boolean photoCapture = false;
 
     /**
@@ -133,7 +147,13 @@ public class TrackTaskConfig implements TaskConfigTemplate {
      * Minimum confidence to consider target as detected
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "0.7")
     private Float confidenceThreshold = 0.7f;
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_TRACK.name();
+    }
 
     @Override
     public TaskType getTaskType() {

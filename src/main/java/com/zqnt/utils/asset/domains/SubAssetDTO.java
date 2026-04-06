@@ -34,6 +34,7 @@ public class SubAssetDTO implements Serializable {
 	private String model;
 	private Integer port;
 	private String liveStreamServer;
+	private Boolean streamUrlPredefined;
 	private String externalDeviceType;
 	private String externalDeviceSubType;
 	private String externalId;

@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import lombok.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class DetectTaskConfig implements TaskConfigTemplate {
+
 
     /**
      * Detection targets (REQUIRED)
@@ -32,6 +34,7 @@ public class DetectTaskConfig implements TaskConfigTemplate {
      * - patrol: Patrol pattern with detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "continuous")
     private String detectionMode = "continuous";
 
     /**
@@ -48,42 +51,49 @@ public class DetectTaskConfig implements TaskConfigTemplate {
      * Detection area radius in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "50.0")
     private Float areaRadius = 50.0f;
 
     /**
      * Detection altitude in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "30.0")
     private Float detectionAltitude = 30.0f;
 
     /**
      * Scan pattern (grid, spiral, perimeter, random)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "grid")
     private String scanPattern = "grid";
 
     /**
      * Flight speed during detection in m/s
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "3.0")
     private Float scanSpeed = 3.0f;
 
     /**
      * Enable thermal/infrared detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "false")
     private Boolean thermalDetection = false;
 
     /**
      * Enable RGB/visual detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean visualDetection = true;
 
     /**
      * Minimum detection confidence (0.0 - 1.0)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "0.6")
     private Float minConfidence = 0.6f;
 
     /**
@@ -95,42 +105,49 @@ public class DetectTaskConfig implements TaskConfigTemplate {
      * Auto-capture photo on detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean autoCaptureOnDetection = true;
 
     /**
      * Investigate detected objects (move closer for better view)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "false")
     private Boolean investigateDetections = false;
 
     /**
      * Investigation distance in meters (closer approach to detected object)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10.0")
     private Float investigationDistance = 10.0f;
 
     /**
      * Investigation duration per object in seconds
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10")
     private Integer investigationDuration = 10;
 
     /**
      * Gimbal pitch for detection in degrees
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "-45")
     private Integer gimbalPitch = -45;
 
     /**
      * Enable zoom during detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "false")
     private Boolean enableZoom = false;
 
     /**
      * Zoom level for detection
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "1.0")
     private Float zoomLevel = 1.0f;
 
     /**
@@ -142,6 +159,7 @@ public class DetectTaskConfig implements TaskConfigTemplate {
      * Action on max detections reached (continue, return_home, land, hover)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "return_home")
     private String onMaxDetectionsAction = "return_home";
 
     /**
@@ -169,6 +187,11 @@ public class DetectTaskConfig implements TaskConfigTemplate {
         private String name;
         private String value;
         private String description;
+    }
+
+    @Override
+    public String getConfigType() {
+        return TaskType.TASK_TYPE_DETECT.name();
     }
 
     @Override

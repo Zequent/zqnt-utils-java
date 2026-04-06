@@ -1,11 +1,21 @@
 package com.zqnt.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
+import com.fasterxml.jackson.databind.jsontype.TypeIdResolver;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.zqnt.utils.missionautonomy.domains.config.TaskConfigTemplate;
+import com.zqnt.utils.missionautonomy.domains.config.WaypointTaskConfig;
+
+import java.io.IOException;
 
 /**
  * Centralized JSON utility with pre-configured ObjectMapper
@@ -38,6 +48,31 @@ public final class JsonUtils {
 
         // Write dates as ISO-8601 strings, not timestamps
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        // Handle polymorphic deserialization edge cases for TaskConfigTemplate:
+        // 1. Missing "configType" discriminator → default to WaypointTaskConfig
+        // 2. Config delivered as double-serialized JSON string → re-parse transparently
+        mapper.addHandler(new DeserializationProblemHandler() {
+            @Override
+            public JavaType handleMissingTypeId(DeserializationContext ctxt,
+                    JavaType baseType, TypeIdResolver idResolver, String failureMsg) throws IOException {
+                if (baseType.isTypeOrSubTypeOf(TaskConfigTemplate.class)) {
+                    return ctxt.constructType(WaypointTaskConfig.class);
+                }
+                return super.handleMissingTypeId(ctxt, baseType, idResolver, failureMsg);
+            }
+
+            @Override
+            public Object handleMissingInstantiator(DeserializationContext ctxt,
+                    Class<?> instClass, com.fasterxml.jackson.databind.deser.ValueInstantiator vi,
+                    JsonParser p, String msg) throws IOException {
+                if (TaskConfigTemplate.class.isAssignableFrom(instClass)
+                        && p.currentToken() == JsonToken.VALUE_STRING) {
+                    return MAPPER.readValue(p.getText(), instClass);
+                }
+                return super.handleMissingInstantiator(ctxt, instClass, vi, p, msg);
+            }
+        });
 
         return mapper;
     }

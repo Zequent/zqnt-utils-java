@@ -45,6 +45,7 @@ public class TaskDTO implements Serializable {
 
     // ============= CORE METADATA =============
 
+    
     /**
      * Unique task identifier
      */
