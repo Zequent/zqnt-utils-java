@@ -118,6 +118,9 @@ message RemoteControlChangeAcModeRequest{
   RequestBase base = 1;
 }
 
+message RemoteControlTakePhotoRequest{
+  RequestBase base = 1;
+}
 
 // ========== SERVICE ==========
 
@@ -134,7 +137,7 @@ service RemoteControlService {
   rpc ExitManualControl(RemoteControlManualControlRequest) returns (RemoteControlResponse);
   rpc ManualControlInput(stream RemoteControlManualControlInputRequest) returns (RemoteControlResponse);
   rpc LookAt(RemoteControlLookAtRequest) returns (RemoteControlResponse);
-
+  rpc TakePhoto(RemoteControlTakePhotoRequest) returns (RemoteControlResponse);
 
   // Dock Specific Operations
   rpc OpenCover(RemoteControlOpenCoverRequest) returns (RemoteControlResponse);

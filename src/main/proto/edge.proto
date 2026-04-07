@@ -28,6 +28,7 @@ service EdgeAdapterService {
 
   // Gimbal & Camera Control
   rpc LookAt(EdgeLookAtRequest) returns (EdgeResponse);
+  rpc TakePhoto(EdgeTakePhotoRequest) returns (EdgeResponse);
   rpc EnableGimbalTracking(EdgeEnableGimbalTrackingRequest) returns (EdgeResponse);
 
   // Detection
@@ -135,6 +136,9 @@ message EdgeLookAtRequest {
   optional bool locked = 4;
 }
 
+message EdgeTakePhotoRequest{
+  RequestBase base = 1;
+}
 message EdgeEnableGimbalTrackingRequest {
   RequestBase base = 1;
   bool enabled = 2;
