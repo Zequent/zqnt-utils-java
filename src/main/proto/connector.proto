@@ -36,12 +36,30 @@ service ConnectorService{
   rpc DeleteTask(ConnectorDeleteTaskRequest) returns (ConnectorResponse);
   rpc GetScheduler(ConnectorGetSchedulerRequest) returns (ConnectorResponse);
   rpc CreateScheduler(ConnectorCreateSchedulerRequest) returns (ConnectorResponse);
+  rpc CreateSchedulers(ConnectorCreateSchedulersRequest) returns (ConnectorResponse);
   rpc UpdateScheduler(ConnectorUpdateSchedulerRequest) returns (ConnectorResponse);
   rpc DeleteScheduler(ConnectorDeleteSchedulerRequest) returns (ConnectorResponse);
+  rpc DeleteSchedulers(ConnectorDeleteSchedulersRequest) returns (ConnectorResponse);
+  rpc DeleteSchedulersByTask(ConnectorDeleteSchedulersByTaskRequest) returns (ConnectorResponse);
 
   // Telemetry Storage - batch processing from live-data service
   rpc StoreTelemetryBatch(stream ConnectorStoreTelemetryRequest) returns (ConnectorResponse);
 
+}
+
+
+message ConnectorDeleteSchedulersByTaskRequest {
+  RequestBase base = 1;
+  string taskId = 2;
+}
+message ConnectorCreateSchedulersRequest {
+  RequestBase base = 1;
+  repeated SchedulerProtoDTO schedulers = 2;
+}
+
+message ConnectorDeleteSchedulersRequest {
+  RequestBase base = 1;
+  repeated string ids = 2;
 }
 
 message ConnectorGetAssetByIdRequest{

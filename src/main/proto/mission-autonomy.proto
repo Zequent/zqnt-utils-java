@@ -28,6 +28,11 @@ service MissionAutonomyService {
   rpc CreateScheduler(CreateSchedulerRequest) returns(SchedulerResponse);
   rpc UpdateScheduler(UpdateSchedulerRequest) returns(SchedulerResponse);
   rpc DeleteScheduler(DeleteSchedulerRequest) returns(SchedulerResponse);
+  //TOdo create batchendpoints here too
+  rpc CreateSchedulers(CreateSchedulersRequest) returns(SchedulerResponse);
+  rpc DeleteSchedulers(DeleteSchedulersRequest) returns(SchedulerResponse);
+  rpc DeleteSchedulersByTask(DeleteSchedulersByTaskRequest) returns(SchedulerResponse);
+
   rpc StartTask(StartTaskRequest) returns(TaskResponse);
   rpc StopTask(StopTaskRequest) returns(TaskResponse);
 }
@@ -88,6 +93,11 @@ message CreateSchedulerRequest{
   SchedulerProtoDTO schedulerDTO = 2;
 }
 
+message CreateSchedulersRequest{
+  RequestBase base = 1;
+  repeated SchedulerProtoDTO schedulerDTOs = 2;
+}
+
 message UpdateSchedulerRequest{
   RequestBase base = 1;
   SchedulerProtoDTO schedulerDTO = 2;
@@ -97,6 +107,15 @@ message UpdateSchedulerRequest{
 message DeleteSchedulerRequest{
   RequestBase base = 1;
   string schedulerId = 2;
+}
+message DeleteSchedulersRequest{
+  RequestBase base = 1;
+  repeated string schedulerIds = 2;
+}
+
+message DeleteSchedulersByTaskRequest{
+  RequestBase base = 1;
+  string taskId = 2;
 }
 
 message GetSchedulerRequest{
