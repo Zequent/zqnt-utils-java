@@ -130,7 +130,7 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-          input: src/main/proto
+          input: .
           push_labels: ${{ steps.label.outputs.value }}
           format: false
           lint: false
