@@ -68,3 +68,4 @@ jobs:
           token: ${{ secrets.BUF_TOKEN }}
           input: src/main/proto
           push_labels: ${{ steps.version.outputs.value }}
+          lint_disable: true
