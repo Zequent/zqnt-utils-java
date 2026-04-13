@@ -67,7 +67,12 @@ jobs:
         with:
           token: ${{ secrets.BUF_TOKEN }}
           input: .
-          push_labels: ${{ steps.version.outputs.value }}
           format: false
           lint: false
-          push: true
+          breaking: false
+          push: false
+
+      - name: Push to BSR with label
+        run: buf push . --label ${{ steps.version.outputs.value }}
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
