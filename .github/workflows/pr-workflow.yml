@@ -110,6 +110,7 @@ jobs:
   buf:
     name: Buf Lint & Push (Draft)
     runs-on: ubuntu-latest
+    needs: test-java
     steps:
       - uses: actions/checkout@v4
 
@@ -127,7 +128,8 @@ jobs:
           BASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
           echo "value=${BASE_VERSION}-PR${PR_NUMBER}-${COMMIT_SHA}-SNAPSHOT" >> $GITHUB_OUTPUT
 
-      - uses: bufbuild/buf-action@v1
+      - name: Setup Buf CLI
+        uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
           input: .

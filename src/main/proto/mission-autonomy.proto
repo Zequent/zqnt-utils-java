@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 option java_multiple_files = true;
 option java_package = "com.zqnt.utils.mission.proto";
 option java_outer_classname = "MissionAutonomyProto";
-option go_package = "zequent/framework/gen/proto";
+option go_package = "gen/missionautonomy/proto";
 
 // MissionAutonomyService provides RPC endpoints for mission and task management,
 // including operations for creating, updating, deleting, and retrieving missions,
@@ -28,7 +28,6 @@ service MissionAutonomyService {
   rpc CreateScheduler(CreateSchedulerRequest) returns(SchedulerResponse);
   rpc UpdateScheduler(UpdateSchedulerRequest) returns(SchedulerResponse);
   rpc DeleteScheduler(DeleteSchedulerRequest) returns(SchedulerResponse);
-  //TOdo create batchendpoints here too
   rpc CreateSchedulers(CreateSchedulersRequest) returns(SchedulerResponse);
   rpc DeleteSchedulers(DeleteSchedulersRequest) returns(SchedulerResponse);
   rpc DeleteSchedulersByTask(DeleteSchedulersByTaskRequest) returns(SchedulerResponse);

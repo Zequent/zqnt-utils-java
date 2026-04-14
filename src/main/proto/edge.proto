@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 option java_multiple_files = true;
 option java_package = "com.zqnt.utils.edge.sdk.proto";
 option java_outer_classname = "EdgeSdkProto";
-option go_package = "zequent/framework/gen/proto";
+option go_package = "gen/edge/sdk/proto";
 
 // EdgeAdapterService provides RPC endpoints for controlling edge devices,
 // including flight operations, gimbal control, camera management, dock operations,

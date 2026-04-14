@@ -7,7 +7,7 @@ import "common.proto";
 option java_multiple_files = true;
 option java_package = "com.zqnt.utils.livedata.proto";
 option java_outer_classname = "LiveDataProto";
-option go_package = "zequent/framework/gen/proto";
+option go_package = "gen/livedata/proto";
 
 
 message LiveDataResponse {

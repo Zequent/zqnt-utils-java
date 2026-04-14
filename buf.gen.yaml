@@ -1,0 +1,23 @@
+version: v1
+
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/go
+    revision: 1
+  - plugin: buf.build/grpc/go
+    out: gen/go
+    revision: 1
+
+  - plugin: buf.build/protocolbuffers/python
+    out: gen/python
+    revision: 1
+  - plugin: buf.build/grpc/python
+    out: gen/python
+    revision: 1
+
+  - plugin: buf.build/protocolbuffers/java
+    out: gen/java
+    revision: 1
+  - plugin: buf.build/grpc/java
+    out: gen/java
+    revision: 1

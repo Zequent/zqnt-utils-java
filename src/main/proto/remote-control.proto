@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 option java_multiple_files = true;
 option java_package = "com.zqnt.utils.remotecontrol.proto";
 option java_outer_classname = "RemoteControlProto";
-option go_package = "zequent/framework/gen/proto";
+option go_package = "gen/remotecontrol/proto";
 
 // Note: Most messages are now in common.proto for reuse across services
 // This file only contains service-specific wrapper messages
