@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+          token: ${{ secrets.GH_PAT }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v5
@@ -36,6 +37,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+          token: ${{ secrets.GH_PAT }}
 
       - uses: actions/setup-java@v5
         with:
