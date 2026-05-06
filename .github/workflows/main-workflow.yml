@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.GH_PAT }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v5
@@ -32,6 +35,9 @@ jobs:
     needs: test-and-build-java
     steps:
       - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.GH_PAT }}
 
       - uses: actions/setup-java@v5
         with:
@@ -44,3 +50,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
+

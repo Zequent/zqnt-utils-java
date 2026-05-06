@@ -1,0 +1,3 @@
+[submodule "src/main/proto"]
+	path = src/main/proto
+	url = git@github.com:Zequent/zqnt-protos.git
