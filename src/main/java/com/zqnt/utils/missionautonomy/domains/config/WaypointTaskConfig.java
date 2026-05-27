@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.common.proto.*;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
@@ -22,10 +23,12 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     // ============= REQUIRED FIELDS =============
 
     /**
-     * Flight identifier
+     * External task identifier — the ID the asset/device uses for this execution.
+     * Vendor-neutral: called "flightId" by DJI, "mission_id" by Mavlink, "route_id" by ground robots.
+     * Used to correlate status callbacks from the asset back to this task.
      */
-
-    private String flightId;
+    @JsonAlias("flightId")  // backwards-compat for existing DB records
+    private String externalTaskId;
 
     /**
      * Waypoints to follow (REQUIRED, minimum 2 waypoints)

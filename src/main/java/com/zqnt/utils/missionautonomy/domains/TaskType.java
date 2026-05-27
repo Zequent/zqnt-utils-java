@@ -2,44 +2,33 @@ package com.zqnt.utils.missionautonomy.domains;
 
 /**
  * Defines available task action types for mission autonomy.
- * Each type represents a specific autonomous action the drone can perform.
+ * Must stay in sync with TaskTypeProto in common.proto.
  */
 public enum TaskType {
-    /**
-     * Object/feature detection action
-     */
-    TASK_TYPE_DETECT,
-
-    /**
-     * Area mapping/survey action
-     */
-    TASK_TYPE_AREA_MAPPING,
-
-    /**
-     * Waypoint-based flight action
-     */
-    TASK_TYPE_WAYPOINT,
-
-    /**
-     * Point of interest orbit action
-     */
-    TASK_TYPE_POI,
-
-    /**
-     * Follow target action (dynamic following)
-     */
-    TASK_TYPE_FOLLOW,
-
-    /**
-     * Track target action (lock and track)
-     */
-    TASK_TYPE_TRACK,
-
-    /**
-     * Counter-drone action (future)
-     */
-    TASK_TYPE_COUNTER_DRONE,
     TASK_TYPE_UNSPECIFIED,
-
+    TASK_TYPE_DETECT,
+    TASK_TYPE_AREA_MAPPING,
+    TASK_TYPE_WAYPOINT,
+    TASK_TYPE_POI,
+    TASK_TYPE_FOLLOW,
+    TASK_TYPE_TRACK,
+    TASK_TYPE_COUNTER_DRONE,
+    TASK_TYPE_TAKE_OFF,
+    TASK_TYPE_GO_TO,
+    TASK_TYPE_RETURN_TO_HOME,
+    TASK_TYPE_ENTER_MANUAL_CONTROL,
+    TASK_TYPE_EXIT_MANUAL_CONTROL,
+    TASK_TYPE_LOOK_AT,
+    TASK_TYPE_TAKE_PHOTO,
+    TASK_TYPE_OPEN_COVER,
+    TASK_TYPE_CLOSE_COVER,
+    TASK_TYPE_START_CHARGING,
+    TASK_TYPE_STOP_CHARGING,
+    TASK_TYPE_REBOOT_ASSET,
+    TASK_TYPE_BOOT_SUB_ASSET,
+    TASK_TYPE_REMOTE_DEBUG,
+    TASK_TYPE_CHANGE_AC_MODE,
+    TASK_TYPE_CUSTOM_COMMAND,
+    TASK_TYPE_EXTERNAL,
     UNRECOGNIZED,
 }
