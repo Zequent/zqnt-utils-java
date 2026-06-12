@@ -25,6 +25,7 @@ public enum CacheKeys {
 	SUBASSET_DTO("subasset-dto:{subAssetSn}"),
 	EDGE_ENDPOINTS("edge-endpoints:{vendor}"),
 	EDGE_VENDOR("edge-vendor:{sn}"),  // Maps SN to vendor for routing
+	ASSET_CURRENT_TASK("asset-current-task:{sn}"),  // Current executing task for an asset (externalTaskId → JSON)
 	;
 
 

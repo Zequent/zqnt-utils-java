@@ -21,8 +21,8 @@ public class AssetTelemetryData {
 	private String id;
 	private LocalDateTime timestamp;
 	private String sn;
-	private Float latitude;
-	private Float longitude;
+	private Double latitude;
+	private Double longitude;
 	private Float absoluteAltitude;
 	private Float relativeAltitude;
 	private Float environmentTemp;

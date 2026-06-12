@@ -20,8 +20,8 @@ public class SubAssetTelemetryData {
 
 	private String id;
 	private LocalDateTime timestamp;
-	private Float latitude;
-	private Float longitude;
+	private Double latitude;
+	private Double longitude;
 	private Float absoluteAltitude;
 	private Float relativeAltitude;
 	private Float horizontalSpeed;
@@ -79,8 +79,8 @@ public class SubAssetTelemetryData {
 	@NoArgsConstructor
 	@AllArgsConstructor
 	public static class RangeFinderData {
-		private Float targetLatitude;
-		private Float targetLongitude;
+		private Double targetLatitude;
+		private Double targetLongitude;
 		private Float targetDistance;
 		private Float targetAltitude;
 	}
