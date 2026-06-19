@@ -97,6 +97,11 @@ public class TaskDTO implements Serializable {
     // ============= EXECUTION CONTEXT =============
 
     /**
+     * external task ID
+     */
+    private String externalTaskId;
+
+    /**
      * Current task status
      */
     private TaskStatus status;
